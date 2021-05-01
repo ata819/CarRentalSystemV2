@@ -1,0 +1,3 @@
+/Users/alanta/CLionProjects/CarRentalSystemV2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/alanta/CLionProjects/CarRentalSystemV2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/alanta/CLionProjects/CarRentalSystemV2/cmake-build-debug/CMakeFiles/CarRentalSystemV2.dir
