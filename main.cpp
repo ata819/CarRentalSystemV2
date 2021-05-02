@@ -39,6 +39,7 @@ void customerInformation(){
             removeCustomer();
             break;
         case 3:
+            loadingScreen();
             updateCustomer();
             break;
         case 4:
@@ -65,7 +66,6 @@ void addCustomer(){
     std::cout << "\t\t\t\t\t------------------------------";
     std::cout << "\n\t\t\t\t\t    ADD CUSTOMER ACCOUNT   \n";
     std::cout << "\t\t\t\t\t------------------------------\n\n";
-    //printFileToScreen("customerInfo.txt");
     DBLite sqldb;
     sqldb.showTable(0);
 
@@ -90,6 +90,7 @@ void addCustomer(){
             fullName = firstName + " " + lastName;
             sqldb.insertData(0,fullName, driverLicense, phoneNum, "", "", "", "", "");
             sqldb.closeDB();
+            histCreate(fullName, 0, "CUSTOMER INFO");
             sleep(4);
             ClearScreen();
             break;
@@ -114,7 +115,7 @@ void removeCustomer(){
     std::string firstName;
     std::string lastName;
     std::string driverLicense;
-    std::string fullNameDL;
+    std::string fullName;
     std::string line;
     char yesOrNo;
     DBLite sqldb;
@@ -129,10 +130,11 @@ void removeCustomer(){
         std::cout << "Please enter the customer's FIRSTNAME LASTNAME" << std::endl;
         std::cout << ":";
         std::cin >> firstName >> lastName;
+        fullName = firstName + " " + lastName;
         std::cout << "Please enter the customer's DRIVER LICENSE NUMBER" << std::endl;
         std::cout << ":";
         std::cin >> driverLicense;
-        std::cout << "The customer information entered was NAME:" << firstName << " " << lastName << " DL#:" << driverLicense<< std::endl;
+        std::cout << "The customer information entered was NAME:" << fullName << " DL#:" << driverLicense<< std::endl;
         std::cout << "Is that the correct name? (y/n) " << std::endl;
         std::cout << ":";
         std::cin >> yesOrNo;
@@ -140,6 +142,7 @@ void removeCustomer(){
     std::cout << "CUSTOMER REMOVED" << std::endl;
     sqldb.deleteData(0, driverLicense, "");
     sqldb.closeDB();
+    histCreate(fullName, 1, "CUSTOMER INFO");
 }
 
 void updateCustomer(){
@@ -184,6 +187,7 @@ void updateCustomer(){
             std::cout << "CUSTOMER UPDATED " << std::endl;
             sqldb.updateData(0, columnName, errName, custID );
             sqldb.closeDB();
+            histCreate(columnName, 3, errName);
             sleep(4);
             ClearScreen();
             break;
@@ -253,6 +257,7 @@ void addCar(){
     std::string carName;
     std::string carType;
     std::string carColor;
+    std::string fullCarName;
     std::string line;
     char yesOrNo;
     std::cout << "\t\t\t\t\t------------------------------";
@@ -275,8 +280,10 @@ void addCar(){
     switch(yesOrNo) {
         case 'y':{
             std::cout << "CAR ADDED" << std::endl;
+            fullCarName = carVin + " " + carYear + " " + carMake + " " + carName + " " + carType + " " + carColor;
             sqldb.insertData(1,carVin, carYear, carMake, carName, carType, carColor, "", "");
             sqldb.closeDB();
+            histCreate(fullCarName,0, "CAR INVENTORY");
             break;
         }
         case 'n': {
@@ -313,7 +320,7 @@ void removeCar(){
     }while(yesOrNo != 'y');
     sqldb.deleteData(1,carVin, "" );
     sqldb.closeDB();
-
+    histCreate(carVin, 1, "CAR INVENTORY");
 
 }
 void editCar(){
@@ -346,6 +353,7 @@ void editCar(){
             std::cout << "CAR UPDATED " << std::endl;
             sqldb.updateData(1, columnName, errName, carID );
             sqldb.closeDB();
+            histCreate(columnName, 2, errName);
             sleep(4);
             ClearScreen();
             break;
@@ -479,6 +487,7 @@ void rentCar(){
     sqldb.insertData(4, invoiceN, customerFullName, DLNumber, carVin, carInfo, rentDueDate, rentDays, totalCost);
     sqldb.updateData(2, "Avail", "Unavailable", carVin );
     sqldb.closeDB();
+    histCreate(customerFullName, 3, carInfo);
 
 
 }
@@ -555,6 +564,7 @@ void rentUpdate(){
         //sqldb.updateData(4,"DaysRent", rentDays, customerInvoice);
         //sqldb.updateData(4,"DueDate", rentDueDate, customerInvoice);
         sqldb.closeDB();
+        histCreate(customerFullName, 4, InvoiceBill);
     }
 
 }
@@ -568,6 +578,30 @@ void invoiceCheck(){
         std::cout << ":";
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
+    sqldb.closeDB();
+}
+
+void histCreate(const std::string& noun1, int action, const std::string& noun2){
+    std::string act;
+    std::string time = timeNow();
+    std::string date = dateNow();
+    if(action == 0){
+        act = "was inserted into";
+    }
+    if(action == 1){
+        act = "was deleted from";
+    }
+    if(action == 2){
+        act = " information was updated for";
+    }
+    if(action == 3){
+        act = "was assign a rental car:";
+    }
+    if(action == 4){
+        act = "had their rental days/car updated with an invoice:";
+    }
+    DBLite sqldb;
+    sqldb.insertData(3, time, date, noun1, act, noun2, "", "", "");
     sqldb.closeDB();
 }
 

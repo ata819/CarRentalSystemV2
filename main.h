@@ -20,7 +20,9 @@
 
 void printFileToScreen(const std::string& fileName);
 
-std::string timeAndDate();
+std::string dateNow();
+
+std::string timeNow();
 
 std::string invoiceNum();
 
@@ -59,6 +61,8 @@ void rentUpdate();
 void invoiceCheck();
 
 void historyCheck();
+
+void histCreate(const std::string& noun1, int action, const std::string& noun2);
 
 void databaseInitial();
 
