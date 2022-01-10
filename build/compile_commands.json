@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/Users/alanta/VSCProjects/CarRentalSystemV2/build",
+  "command": "/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -isystem /usr/local/include -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++14 -o CMakeFiles/CarRentalSystemV2.dir/main.cpp.o -c /Users/alanta/VSCProjects/CarRentalSystemV2/main.cpp",
+  "file": "/Users/alanta/VSCProjects/CarRentalSystemV2/main.cpp"
+},
+{
+  "directory": "/Users/alanta/VSCProjects/CarRentalSystemV2/build",
+  "command": "/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -isystem /usr/local/include -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++14 -o CMakeFiles/CarRentalSystemV2.dir/displayFunc.cpp.o -c /Users/alanta/VSCProjects/CarRentalSystemV2/displayFunc.cpp",
+  "file": "/Users/alanta/VSCProjects/CarRentalSystemV2/displayFunc.cpp"
+}
+]

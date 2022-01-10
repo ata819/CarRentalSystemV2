@@ -100,22 +100,22 @@ public:
 
         if(whichTable == 0){
             sql = "CREATE TABLE CustomerInfo ("  \
-      "Customer_ID INTEGER PRIMARY KEY AUTOINCREMENT," \
-      "Name TEXT NOT NULL," \
-      "DL TEXT NOT NULL," \
-      "Phone INTEGER NOT NULL);";
+        "Customer_ID INTEGER PRIMARY KEY AUTOINCREMENT," \
+        "Name TEXT NOT NULL," \
+        "DL TEXT NOT NULL," \
+        "Phone INTEGER NOT NULL);";
         }
         if(whichTable == 1){
             // Save SQL to create a table
             sql = "CREATE TABLE CarInfo ("  \
             "Car_ID INTEGER PRIMARY KEY AUTOINCREMENT," \
             "Car_Regis TEXT NOT NULL," \
-      "Year INTEGER NOT NULL," \
-      "Make TEXT NOT NULL," \
-      "Model TEXT NOT NULL," \
-      "Type TEXT NOT NULL," \
-      "Color TEXT NOT NULL," \
-      "Avail TEXT NOT NULL);";
+        "Year INTEGER NOT NULL," \
+        "Make TEXT NOT NULL," \
+        "Model TEXT NOT NULL," \
+        "Type TEXT NOT NULL," \
+        "Color TEXT NOT NULL," \
+        "Avail TEXT NOT NULL);";
         }
         if(whichTable == 2){
             sql = "CREATE TABLE RentalData ("\
@@ -175,7 +175,7 @@ public:
         }
         if(table == 1){
             asprintf(&query, "INSERT INTO CarInfo('Car_Regis', 'Year', 'Make', 'Model', 'Type', "
-                             "'Color', 'Avail') VALUES  ('%s', '%s', '%s', '%s', '%s', '%s', 'Available');", val1.c_str(), val2.c_str(), val3.c_str(), val4.c_str(), val5.c_str(), val6.c_str());
+                                "'Color', 'Avail') VALUES  ('%s', '%s', '%s', '%s', '%s', '%s', 'Available');", val1.c_str(), val2.c_str(), val3.c_str(), val4.c_str(), val5.c_str(), val6.c_str());
         }
         if(table == 2){
             asprintf(&query, "INSERT INTO RentalData('Invoice_ID', 'Days', 'RentDue', 'CustName', 'DLNum', 'CarVin', 'CarName') VALUES  ('%s', '%s', '%s', '%s', '%s', '%s', '%s');", val1.c_str(), val2.c_str(), val3.c_str(), val4.c_str(), val5.c_str(), val6.c_str(), val7.c_str());
@@ -185,7 +185,7 @@ public:
         }
         if(table == 4){
             asprintf(&query, "INSERT INTO InvoiceBill('InvoiceNum', 'BillName', 'BillDL', 'BillCarReg', 'BillCarName', "
-                             "'DueDate', 'DaysRent', 'Total') VALUES  ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');", val1.c_str(), val2.c_str(), val3.c_str(), val4.c_str(), val5.c_str(), val6.c_str(), val7.c_str(), val8.c_str());
+                                "'DueDate', 'DaysRent', 'Total') VALUES  ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');", val1.c_str(), val2.c_str(), val3.c_str(), val4.c_str(), val5.c_str(), val6.c_str(), val7.c_str(), val8.c_str());
         }
         // Prepare the query
         sqlite3_prepare(db, query, strlen(query), &stmt, NULL);

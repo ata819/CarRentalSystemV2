@@ -80,7 +80,8 @@ std::string invoiceNum(){
 
 void loadingScreen(){
     std::cout << std::string( 100, '\n' );
-    printf("\t\t\t\t\tLoading...\n");
+    printf("\t\t\t\t\t\t\t\tLoading...\n");
+    printf("\n\n\n\n\n\n");
     sleep(3);
     std::cout << std::string( 100, '\n' );
 }

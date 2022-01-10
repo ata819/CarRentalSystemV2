@@ -44,8 +44,9 @@ void customerInformation(){
             break;
         case 4:
             ClearScreen();
-            std::cout << "\t\t\t\t\t\t\t\tGOING BACK...\n";
+            std::cout << "\t\t\t\t\t\t\t\tGOING BACK...\n\n\n\n\n\n\n";
             sleep(4);
+            ClearScreen();
             break;
         default:
             std::cin.clear();
@@ -81,12 +82,14 @@ void addCustomer(){
 
     std::cout << "The customer information entered was NAME:" << firstName << " " << lastName << " DL#:" << driverLicense << " PH#:" << phoneNum << std::endl;
 
-    std::cout << "Is that the correct name? (y/n) " << std::endl;
+    std::cout << "Is that the correct information? (y/n) " << std::endl;
     std::cout << ":";
     std::cin >> yesOrNo;
     switch(yesOrNo) {
         case 'y':{
-            std::cout << "CUSTOMER ADDED" << std::endl;
+            ClearScreen();
+            std::cout << "\t\t\t\t\t\t\t\tCUSTOMER ADDED" << std::endl;
+            std::cout << "\n\n\n\n" << std::endl;
             fullName = firstName + " " + lastName;
             sqldb.insertData(0,fullName, driverLicense, phoneNum, "", "", "", "", "");
             sqldb.closeDB();
@@ -135,14 +138,18 @@ void removeCustomer(){
         std::cout << ":";
         std::cin >> driverLicense;
         std::cout << "The customer information entered was NAME:" << fullName << " DL#:" << driverLicense<< std::endl;
-        std::cout << "Is that the correct name? (y/n) " << std::endl;
+        std::cout << "Is that the correct information? (y/n) " << std::endl;
         std::cout << ":";
         std::cin >> yesOrNo;
     } while (yesOrNo != 'y');
-    std::cout << "CUSTOMER REMOVED" << std::endl;
+    ClearScreen();
+    std::cout << "\t\t\t\t\t\t\t\tCUSTOMER REMOVED" << std::endl;
+    std::cout << "\n\n\n\n" << std::endl;
     sqldb.deleteData(0, driverLicense, "");
     sqldb.closeDB();
     histCreate(fullName, 1, "CUSTOMER INFO");
+    sleep(3);
+    ClearScreen();
 }
 
 void updateCustomer(){
@@ -179,15 +186,17 @@ void updateCustomer(){
         std::cin >> errName;
     }
     std::cout << "The UPDATED customer information entered was: " << errName << std::endl;
-    std::cout << "Is that the correct name? (y/n) " << std::endl;
+    std::cout << "Is that the correct information? (y/n) " << std::endl;
     std::cout << ":";
     std::cin >> yesOrNo;
     switch(yesOrNo) {
         case 'y':{
-            std::cout << "CUSTOMER UPDATED " << std::endl;
+            ClearScreen();
+            std::cout << "\t\t\t\t\t\t\t\tCUSTOMER UPDATED " << std::endl;
+            std::cout << "\n\n\n\n" << std::endl;
             sqldb.updateData(0, columnName, errName, custID );
             sqldb.closeDB();
-            histCreate(columnName, 3, errName);
+            histCreate(columnName, 2, errName);
             sleep(4);
             ClearScreen();
             break;
@@ -238,8 +247,9 @@ void carListScreen(){
             break;
         case 4:
             ClearScreen();
-            std::cout << "\t\t\t\t\t\t\t\tGOING BACK...\n";
+            std::cout << "\t\t\t\t\t\t\t\tGOING BACK...\n\n\n\n\n\n\n";
             sleep(4);
+            ClearScreen();
             break;
         default:
             std::cin.clear();
@@ -279,11 +289,15 @@ void addCar(){
     std::cin >> yesOrNo;
     switch(yesOrNo) {
         case 'y':{
-            std::cout << "CAR ADDED" << std::endl;
+            ClearScreen();
+            std::cout << "\t\t\t\t\t\t\t\tCAR ADDED" << std::endl;
+            std::cout << "\n\n\n\n" << std::endl;
             fullCarName = carVin + " " + carYear + " " + carMake + " " + carName + " " + carType + " " + carColor;
             sqldb.insertData(1,carVin, carYear, carMake, carName, carType, carColor, "", "");
             sqldb.closeDB();
             histCreate(fullCarName,0, "CAR INVENTORY");
+            sleep(3);
+            ClearScreen();
             break;
         }
         case 'n': {
@@ -314,14 +328,18 @@ void removeCar(){
         std::cout << ":";
         std::cin >> carVin;
         std::cout << "The car VIN number entered was: " + carVin << std::endl;
-        std::cout << "Is that the correct name? (y/n) " << std::endl;
+        std::cout << "Is that the correct VIN number? (y/n) " << std::endl;
         std::cout << ":";
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
+    ClearScreen();
+    std::cout << "\t\t\t\t\t\t\t\tCAR REMOVED " << std::endl;
+    std::cout << "\n\n\n\n" << std::endl;
     sqldb.deleteData(1,carVin, "" );
     sqldb.closeDB();
     histCreate(carVin, 1, "CAR INVENTORY");
-
+    sleep(3);
+    ClearScreen();
 }
 void editCar(){
     std::string carID;
@@ -345,12 +363,14 @@ void editCar(){
     std::cin >> errName;
 
     std::cout << "The UPDATED car information entered was: " << errName << std::endl;
-    std::cout << "Is that the correct name? (y/n) " << std::endl;
+    std::cout << "Is that the correct information? (y/n) " << std::endl;
     std::cout << ":";
     std::cin >> yesOrNo;
     switch(yesOrNo) {
         case 'y':{
-            std::cout << "CAR UPDATED " << std::endl;
+            ClearScreen();
+            std::cout << "\t\t\t\t\t\t\t\tCAR UPDATED " << std::endl;
+            std::cout << "\n\n\n\n" << std::endl;
             sqldb.updateData(1, columnName, errName, carID );
             sqldb.closeDB();
             histCreate(columnName, 2, errName);
@@ -400,8 +420,9 @@ void rentOptions(){
             break;
         case 4:
             ClearScreen();
-            std::cout << "\t\t\t\t\t\t\t\tGOING BACK...\n";
+            std::cout << "\t\t\t\t\t\t\t\tGOING BACK...\n\n\n\n\n\n\n";
             sleep(4);
+            ClearScreen();
             break;
         default:
             std::cin.clear();
@@ -449,7 +470,7 @@ void rentCar(){
     } while(yesOrNo != 'y');
 
     yesOrNo = 'n';
-
+    ClearScreen();
     do{
         std::cout << "\t\t\t\t\t------------------------------";
         std::cout << "\n\t\t\t\t\t       CAR'S AVAILABLE \n";
@@ -464,7 +485,7 @@ void rentCar(){
         std::cout << ":";
         std::cin >> carVin;
         std::cout << "The car entered was: " + carInfo << std::endl;
-        std::cout << "Is that the correct name? (y/n) " << std::endl;
+        std::cout << "Is that the correct VIN Number? (y/n) " << std::endl;
         std::cout << ":";
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
@@ -481,6 +502,9 @@ void rentCar(){
         std::cout << "Is this correct?" << std::endl;
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
+    ClearScreen();
+    std::cout << "\t\t\t\t\t\t\t\tRENT TRANSACTION COMPLETED" << std::endl;
+    std::cout << "\n\n\n\n" << std::endl;
     std::string invoiceN = invoiceNum();
     std::string totalCost = rentalCost(carType, carMake, rentDays);
     sqldb.insertData(2, invoiceN, rentDays, rentDueDate, customerFullName, DLNumber, carVin, carInfo, "");
@@ -488,6 +512,8 @@ void rentCar(){
     sqldb.updateData(2, "Avail", "Unavailable", carVin );
     sqldb.closeDB();
     histCreate(customerFullName, 3, carInfo);
+    sleep(3);
+    ClearScreen();
 
 
 }
@@ -501,6 +527,9 @@ void rentCheck(){
         std::cout << ":";
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
+    loadingScreen();
+    sleep(3);
+    ClearScreen();
     sqldb.closeDB();
 
 }
@@ -565,6 +594,11 @@ void rentUpdate(){
         //sqldb.updateData(4,"DueDate", rentDueDate, customerInvoice);
         sqldb.closeDB();
         histCreate(customerFullName, 4, InvoiceBill);
+        ClearScreen();
+        std::cout << "\t\t\t\t\t\t\t\tRENT TRANSACTION UPDATED" << std::endl;
+        std::cout << "\n\n\n\n" << std::endl;
+        sleep(3);
+
     }
 
 }
@@ -578,6 +612,8 @@ void invoiceCheck(){
         std::cout << ":";
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
+    ClearScreen();
+    loadingScreen();
     sqldb.closeDB();
 }
 
@@ -614,6 +650,9 @@ void historyCheck(){
         std::cout << ":";
         std::cin >> yesOrNo;
     }while(yesOrNo != 'y');
+    sleep(3);
+    loadingScreen();
+    ClearScreen();
     sqldb.closeDB();
 }
 
@@ -654,7 +693,7 @@ int options(){
             break;
         case 6:
             ClearScreen();
-            std::cout << "\t\t\t\t\t\t\t\tExiting...\n";
+            std::cout << "\t\t\t\t\t\t\t\tExiting...\n\n\n\n\n";
             sleep(5);
             exit(EXIT_SUCCESS);
         default:
@@ -675,11 +714,11 @@ int loginSystem(){
     std::string line;
     std::string realPassword;
 
-    std::cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t       KAR'S RENTAL SYSTEM \n\n";
-    std::cout << "\t\t\t\t\t------------------------------";
-    std::cout << "\n\t\t\t\t\t\t     LOGIN \n";
-    std::cout << "\t\t\t\t\t------------------------------\n\n";
-    std::cout << "\t\t\t\t\tEnter Password: ";
+    std::cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t        KAR'S RENTAL SYSTEM \n\n";
+    std::cout << "\t\t\t\t\t\t\t ------------------------------";
+    std::cout << "\n\t\t\t\t\t\t\t\t      LOGIN \n";
+    std::cout << "\t\t\t\t\t\t\t ------------------------------\n\n";
+    std::cout << "\t\t\t\t\t\t\t Enter Password: ";
     std::cin >> userPassword;
 
     std::ifstream loginPassword ("loginPW.txt");
@@ -687,13 +726,15 @@ int loginSystem(){
         while(getline(loginPassword, line)){
             int compReslt = strcmp(userPassword.c_str(),line.c_str());
             if(compReslt == 0){
-                printf("\t\t\t\t\t\t\tSuccess\n");
+                printf("\t\t\t\t\t\t\t\t\t Success\n");
                 sleep(2);
                 loadingScreen();
                 return 0;
             }
-            else
-                printf("\t\t\t\t\t\t\tFailed\n");
+            else{
+                printf("\t\t\t\t\t\t\t\t\t Failed\n");
+                sleep(2);
+            }
         }
 
     }
@@ -701,6 +742,7 @@ int loginSystem(){
 }
 int main() {
     int pwFailure = 0;
+    ClearScreen();
     introDisplay();
     while(loginSystem() == 1){
         pwFailure += 1;
@@ -709,7 +751,5 @@ int main() {
     }
     databaseInitial();
     options();
-
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
